@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BladeBook | Barber Appointments</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar glass">
+      <div>
+        <p class="eyebrow">Modern Booking Experience</p>
+        <h1>BladeBook</h1>
+      </div>
+      <div class="status-chip" id="headerStatusChip">Status: Offline</div>
+    </header>
+
+    <main>
+      <section id="authSection" class="card glass auth-grid">
+        <div class="auth-copy">
+          <h2>Book your next cut in seconds</h2>
+          <p>Customers can book instantly, while barbers securely manage and approve all requests.</p>
+          <img class="hero-gif" src="https://media.giphy.com/media/l0MYKDr7M4w5v6C5a/giphy.gif" alt="Barber themed animation" />
+        </div>
+
+        <div class="auth-panels">
+          <div class="panel">
+            <h3>Barber Login</h3>
+            <label for="barberId">Barber ID</label>
+            <input id="barberId" type="text" placeholder="e.g. barber001" autocomplete="username" />
+            <label for="barberPassword">Password</label>
+            <input id="barberPassword" type="password" placeholder="Enter password" autocomplete="current-password" />
+            <button id="barberLoginBtn" class="btn btn-primary">Login as Barber</button>
+            <p class="hint">Demo credentials: <code>barber001 / cutmaster123</code></p>
+          </div>
+
+          <div class="divider">OR</div>
+
+          <div class="panel">
+            <h3>Customer Access</h3>
+            <p>No login required. Check availability and request an appointment.</p>
+            <button id="continueCustomerBtn" class="btn">Continue as Customer</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="customerSection" class="card glass hidden">
+        <div class="section-head">
+          <h2>Customer View</h2>
+          <button class="btn subtle" data-action="logoutToAuth">Back</button>
+        </div>
+
+        <div class="customer-layout">
+          <div class="panel">
+            <h3>Live Barber Status</h3>
+            <div id="customerStatusPill" class="pill offline">Offline</div>
+            <p class="small">Status updates are reflected instantly.</p>
+          </div>
+
+          <div class="panel booking-form">
+            <h3>Book Appointment</h3>
+            <label for="customerDate">Date</label>
+            <input id="customerDate" type="date" />
+
+            <label for="customerServices">Services</label>
+            <div id="customerServices" class="check-grid"></div>
+
+            <label for="customerPhone">Phone Number</label>
+            <input id="customerPhone" type="tel" placeholder="(555) 123-4567" />
+
+            <label>Available Time Slots</label>
+            <div id="slotGrid" class="slot-grid"></div>
+
+            <button id="submitBookingBtn" class="btn btn-primary">Submit Booking Request</button>
+          </div>
+
+          <div class="panel">
+            <h3>Your Booking Status</h3>
+            <div id="customerBookings" class="booking-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="barberSection" class="card glass hidden">
+        <div class="section-head">
+          <h2>Barber Dashboard</h2>
+          <div class="head-actions">
+            <span id="notificationBadge" class="badge">0 New</span>
+            <button class="btn subtle" data-action="logoutToAuth">Logout</button>
+          </div>
+        </div>
+
+        <div class="barber-layout">
+          <div class="panel">
+            <h3>Real-time Status</h3>
+            <div class="button-row" id="statusButtons"></div>
+            <h4>Working Hours</h4>
+            <div class="hours-row">
+              <input id="startHour" type="time" value="09:00" />
+              <span>to</span>
+              <input id="endHour" type="time" value="20:00" />
+              <button id="saveHoursBtn" class="btn">Save</button>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Pending Requests</h3>
+            <div id="pendingList" class="booking-list"></div>
+          </div>
+
+          <div class="panel">
+            <h3>Daily Calendar</h3>
+            <label for="barberDate">Pick Date</label>
+            <input id="barberDate" type="date" />
+            <div id="calendarView" class="calendar-view"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+  <script src="app.js"></script>
+</body>
+</html>
